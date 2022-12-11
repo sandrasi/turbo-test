@@ -1,0 +1,5 @@
+<div id="flash-messages">
+  <% flash.each do |type, message| %>
+    <div class="flash <%= type %>" data-turbo-cache="false"><%= message %></div>
+  <% end %>
+</div>

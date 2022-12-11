@@ -1,0 +1,18 @@
+<%= turbo_frame_tag 'main', data: { 'turbo-action': 'advance' } do %>
+  <%= turbo_stream.replace('sidebar') { render 'layouts/sidebar' } %>
+  <%= turbo_stream.replace('flash-messages') { render 'shared/flash' } %>
+
+  <h3>Page <%= params[:page] %></h3>
+  <%= form_with model: @my_model, url: test_page_path(page: params[:page]), method: :patch do |f| %>
+    <div>
+      <%= f.label :field %>
+      <%= f.text_field :field %>
+      <% if f.object.errors.any? %>
+        <div><%= f.object.errors[:field].join %></div>
+      <% end %>
+    </div>
+    <div>
+      <%= f.submit 'Submit' %>
+    </div>
+  <% end %>
+<% end %>
